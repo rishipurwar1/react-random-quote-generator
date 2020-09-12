@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import ShowQuote from './components/ShowQuote'
 
-function App() {
+const App = () => {
+  const [quotes, setQuotes] = useState([]);
+
+  const getQuotes = async () => {
+    const res = await fetch('https://type.fit/api/quotes');
+    const data = await res.json();
+    setQuotes(data);
+  }
+
+  useEffect(() => {
+    getQuotes();
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="quote-box">
+      <ShowQuote quotes={quotes} getQuotes={getQuotes} />
     </div>
   );
 }
