@@ -100,7 +100,7 @@ hr {
 
 @media (max-width: 630px) {
     #quote-box {
-        margin: 0 auto;
+        margin: 10px auto;
         width: 95%;
     }
 }
